@@ -1,6 +1,7 @@
 package nl.topicus.bitbucket.events;
 
 import com.atlassian.bitbucket.event.pull.PullRequestEvent;
+import com.atlassian.bitbucket.event.pull.PullRequestParticipantApprovedEvent;
 import com.atlassian.bitbucket.event.repository.AbstractRepositoryRefsChangedEvent;
 import nl.topicus.bitbucket.model.Models;
 
@@ -20,6 +21,14 @@ public final class Events
 	public static BitbucketServerPullRequestEvent createPullrequestEvent(PullRequestEvent event)
 	{
 		BitbucketServerPullRequestEvent pullRequestEvent = new BitbucketServerPullRequestEvent();
+		pullRequestEvent.setPullrequest(Models.createPullrequest(event.getPullRequest()));
+		pullRequestEvent.setRepository(Models.createRepository(event.getPullRequest().getToRef().getRepository()));
+		return pullRequestEvent;
+	}
+
+	public static BitbucketServerPullRequestParticipantApprovedEvent createPullRequestParticipantApprovedEvent(PullRequestEvent event)
+	{
+		BitbucketServerPullRequestParticipantApprovedEvent pullRequestEvent = new BitbucketServerPullRequestParticipantApprovedEvent();
 		pullRequestEvent.setPullrequest(Models.createPullrequest(event.getPullRequest()));
 		pullRequestEvent.setRepository(Models.createRepository(event.getPullRequest().getToRef().getRepository()));
 		return pullRequestEvent;
