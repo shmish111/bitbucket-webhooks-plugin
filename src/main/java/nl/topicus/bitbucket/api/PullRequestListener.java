@@ -65,7 +65,7 @@ public class PullRequestListener implements DisposableBean
 	@EventListener
 	public void approvedEvent(PullRequestParticipantApprovedEvent event) throws IOException
 	{
-		sendPullRequestParticipantApprovedEvent(event, EventType.PULL_REQUEST_UPDATED);
+		sendPullRequestActivityEvent(event, EventType.PULL_REQUEST_ACTIVITY);
 	}
 
 	@EventListener
@@ -112,9 +112,9 @@ public class PullRequestListener implements DisposableBean
 		sendEvents(pullRequestEvent, repository, eventType);
 	}
 
-	private void sendPullRequestParticipantApprovedEvent(PullRequestEvent event, EventType eventType) throws IOException
+	private void sendPullRequestActivityEvent(PullRequestEvent event, EventType eventType) throws IOException
 	{
-		BitbucketServerPullRequestParticipantApprovedEvent pullRequestEvent = Events.createPullRequestParticipantApprovedEvent(event);
+		BitbucketServerPullRequestActivityEvent pullRequestEvent = Events.createPullRequestActivityEvent(event);
 		Repository repository = event.getPullRequest().getToRef().getRepository();
 		String prUrl = navBuilder.repo(repository).pullRequest(event.getPullRequest().getId()).buildAbsolute();
 		pullRequestEvent.getPullrequest().setLink(prUrl);

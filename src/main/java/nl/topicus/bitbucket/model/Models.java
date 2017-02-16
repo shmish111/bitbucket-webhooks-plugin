@@ -2,10 +2,12 @@ package nl.topicus.bitbucket.model;
 
 import com.atlassian.bitbucket.project.Project;
 import com.atlassian.bitbucket.pull.PullRequest;
+import com.atlassian.bitbucket.pull.PullRequestAction;
 import com.atlassian.bitbucket.pull.PullRequestRef;
 import com.atlassian.bitbucket.repository.Repository;
 import nl.topicus.bitbucket.model.pullrequest.BitbucketServerPullRequest;
 import nl.topicus.bitbucket.model.pullrequest.BitbucketServerPullRequestSource;
+import nl.topicus.bitbucket.model.repository.BitbucketServerAction;
 import nl.topicus.bitbucket.model.repository.BitbucketServerProject;
 import nl.topicus.bitbucket.model.repository.BitbucketServerRepository;
 
@@ -51,5 +53,12 @@ public final class Models
 		source.setLatestCommit(pullRequestRef.getLatestCommit());
 		source.setRepository(createRepository(pullRequestRef.getRepository()));
 		return source;
+	}
+
+	public static BitbucketServerAction createAction(PullRequestAction action)
+	{
+		BitbucketServerAction serverAction = new BitbucketServerAction();
+		serverAction.setAction(action.name());
+		return serverAction;
 	}
 }
