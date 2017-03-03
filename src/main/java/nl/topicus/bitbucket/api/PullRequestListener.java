@@ -1,6 +1,12 @@
 package nl.topicus.bitbucket.api;
 
-import com.atlassian.bitbucket.event.pull.*;
+import com.atlassian.bitbucket.event.pull.PullRequestEvent;
+import com.atlassian.bitbucket.event.pull.PullRequestOpenedEvent;
+import com.atlassian.bitbucket.event.pull.PullRequestReopenedEvent;
+import com.atlassian.bitbucket.event.pull.PullRequestRescopedEvent;
+import com.atlassian.bitbucket.event.pull.PullRequestUpdatedEvent;
+import com.atlassian.bitbucket.event.pull.PullRequestParticipantApprovedEvent;
+import com.atlassian.bitbucket.event.pull.PullRequestMergedEvent;
 import com.atlassian.bitbucket.event.repository.AbstractRepositoryRefsChangedEvent;
 import com.atlassian.bitbucket.nav.NavBuilder;
 import com.atlassian.bitbucket.pull.PullRequest;
@@ -12,7 +18,11 @@ import com.atlassian.httpclient.api.HttpClient;
 import com.atlassian.httpclient.api.Request;
 import com.atlassian.httpclient.api.Response;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
-import nl.topicus.bitbucket.events.*;
+import nl.topicus.bitbucket.events.BitbucketPushEvent;
+import nl.topicus.bitbucket.events.BitbucketServerPullRequestActivityEvent;
+import nl.topicus.bitbucket.events.BitbucketServerPullRequestEvent;
+import nl.topicus.bitbucket.events.EventType;
+import nl.topicus.bitbucket.events.Events;
 import nl.topicus.bitbucket.persistence.WebHookConfiguration;
 import nl.topicus.bitbucket.persistence.WebHookConfigurationDao;
 import org.codehaus.jackson.map.ObjectMapper;
