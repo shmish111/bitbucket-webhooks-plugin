@@ -25,33 +25,46 @@ package nl.topicus.bitbucket.events;
 
 import nl.topicus.bitbucket.model.pullrequest.BitbucketServerPullRequest;
 import nl.topicus.bitbucket.model.repository.BitbucketServerRepository;
+import nl.topicus.bitbucket.model.repository.BitbucketServerRepositoryOwner;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BitbucketServerPullRequestEvent
 {
-	private BitbucketServerPullRequest pullrequest;
+    private BitbucketServerRepositoryOwner actor;
 
-	private BitbucketServerRepository repository;
+    private BitbucketServerPullRequest pullrequest;
 
-	public BitbucketServerPullRequest getPullrequest()
-	{
-		return pullrequest;
-	}
+    private BitbucketServerRepository repository;
 
-	public void setPullrequest(BitbucketServerPullRequest pullrequest)
-	{
-		this.pullrequest = pullrequest;
-	}
+    public BitbucketServerRepositoryOwner getActor()
+    {
+        return actor;
+    }
 
-	public BitbucketServerRepository getRepository()
-	{
-		return repository;
-	}
+    public void setActor(BitbucketServerRepositoryOwner actor)
+    {
+        this.actor = actor;
+    }
 
-	public void setRepository(BitbucketServerRepository repository)
-	{
-		this.repository = repository;
-	}
+    public BitbucketServerPullRequest getPullrequest()
+    {
+        return pullrequest;
+    }
+
+    public void setPullrequest(BitbucketServerPullRequest pullrequest)
+    {
+        this.pullrequest = pullrequest;
+    }
+
+    public BitbucketServerRepository getRepository()
+    {
+        return repository;
+    }
+
+    public void setRepository(BitbucketServerRepository repository)
+    {
+        this.repository = repository;
+    }
 
 }

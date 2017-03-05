@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2016, CloudBees, Inc.
+ * Copyright (c) 2017, CloudBees, Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,46 +23,19 @@
  */
 package nl.topicus.bitbucket.events;
 
-import nl.topicus.bitbucket.model.repository.BitbucketServerRepository;
-import nl.topicus.bitbucket.model.repository.BitbucketServerRepositoryOwner;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import java.util.List;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class BitbucketPushEvent
+public class BitbucketPushDetail
 {
-    private BitbucketServerRepositoryOwner actor;
+    private List<BitbucketPushChange> changes;
 
-    private BitbucketServerRepository repository;
-
-    private BitbucketPushDetail push;
-
-    public BitbucketServerRepositoryOwner getActor()
+    public List<BitbucketPushChange> getChanges()
     {
-        return actor;
+        return changes;
     }
 
-    public void setActor(BitbucketServerRepositoryOwner actor)
+    public void setChanges(List<BitbucketPushChange> changes)
     {
-        this.actor = actor;
-    }
-
-    public BitbucketServerRepository getRepository()
-    {
-        return repository;
-    }
-
-    public void setRepository(BitbucketServerRepository repository)
-    {
-        this.repository = repository;
-    }
-
-    public BitbucketPushDetail getPush()
-    {
-        return push;
-    }
-
-    public void setPush(BitbucketPushDetail push)
-    {
-        this.push = push;
+        this.changes = changes;
     }
 }
