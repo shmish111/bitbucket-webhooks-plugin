@@ -72,6 +72,11 @@ public class PullRequestListener implements DisposableBean
     @EventListener
     public void createdEvent(PullRequestOpenedEvent event) throws IOException
     {
+        final PullRequest pullRequest = event.getPullRequest();
+        // TODO remove the canMerge call after Bitbucket fixes bug regarding consistent ref update
+        // See the accepted answer why the can merge call helps as workaround:
+        // https://answers.atlassian.com/questions/239988
+        pullRequestService.canMerge(pullRequest.getToRef().getRepository().getId(), pullRequest.getId());
         sendPullRequestEvent(event, EventType.PULL_REQUEST_CREATED);
     }
 
